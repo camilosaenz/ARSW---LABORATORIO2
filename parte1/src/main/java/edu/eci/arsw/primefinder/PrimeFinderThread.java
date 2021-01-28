@@ -5,7 +5,6 @@ import java.util.List;
 
 public class PrimeFinderThread extends Thread{
 
-	
 	int a,b;
 	
 	private List<Integer> primes=new LinkedList<Integer>();
@@ -17,15 +16,14 @@ public class PrimeFinderThread extends Thread{
 	}
 
 	public void run(){
-		for (int i=a;i<=b;i++){						
+		for (int i=a;i<=b;i++){	
 			if (isPrime(i)){
 				primes.add(i);
 				System.out.println(i);
 			}
 		}
-		
-		
 	}
+	
 	
 	boolean isPrime(int n) {
 	    if (n%2==0) return false;
@@ -41,6 +39,14 @@ public class PrimeFinderThread extends Thread{
 	}
 	
 	
+	@SuppressWarnings("deprecation")
+	public void pausarThread(PrimeFinderThread thread) {
+		thread.suspend();
+	}
 	
+	@SuppressWarnings("deprecation")
+	public void iniciarThread(PrimeFinderThread thread) {
+		thread.resume();
+	}
 	
 }

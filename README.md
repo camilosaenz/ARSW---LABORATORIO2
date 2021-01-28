@@ -4,6 +4,10 @@
 ### Arquitecturas de Software – ARSW
 ## Laboratorio Programación concurrente, condiciones de carrera, esquemas de sincronización, colecciones sincronizadas y concurrentes - Caso Dogs Race
 
+## Integrantes 
+* Carlos Andres Amorocho Amorocho
+* Rubian Camilo Saenz Rodriguez
+
 ### Descripción:
 Este ejercicio tiene como fin que el estudiante conozca y aplique conceptos propios de la programación concurrente.
 

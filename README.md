@@ -14,10 +14,45 @@ Creación, puesta en marcha y coordinación de hilos.
 
 1. Revise el programa “primos concurrentes” (en la carpeta parte1), dispuesto en el paquete edu.eci.arsw.primefinder. Este es un programa que calcula los números primos entre dos intervalos, distribuyendo la búsqueda de los mismos entre hilos independientes. Por ahora, tiene un único hilo de ejecución que busca los primos entre 0 y 30.000.000. Ejecútelo, abra el administrador de procesos del sistema operativo, y verifique cuantos núcleos son usados por el mismo.
 
+Al ejecutar el programa se puede evidenciar lo siguiente:
+
+Primero se evidencia que en los procesos del administrador de tareas se encuentra en ejecución y es de los programas que mas utiliza recursos de la CPU.
+
+![](./img/media/adminTareas.PNG)
+
+En esta imagen se ve que durante la ejecucion del programa el consumo es muy alto con respecto a las demas funcionalidades del sistema.
+
+![](./img/media/adminTareasProceso.PNG)
+
+El número de nucleos que utiliza es de 4 y se evidencia como son utilizados estos durante la ejecución del programa con 1 solo Thred y según este utiliza un 18% de la CPU.
+
+![](./img/media/adminTareasGrafica.PNG)
+
+En VisualVM la ejecucion del programa demoro 48 segundos y segun este utilizo un 12,1% del total de la CPU
+
+![](./img/media/visualVMStart.PNG)
+
 2. Modifique el programa para que, en lugar de resolver el problema con un solo hilo, lo haga con tres, donde cada uno de éstos hará la tarcera parte del problema original. Verifique nuevamente el funcionamiento, y nuevamente revise el uso de los núcleos del equipo.
 
-3. Lo que se le ha pedido es: debe modificar la aplicación de manera que cuando hayan transcurrido 5 segundos desde que se inició la ejecución, se detengan todos los hilos y se muestre el número de primos encontrados hasta el momento. Luego, se debe esperar a que el usuario presione ENTER para reanudar la ejecución de los mismo.
+Al modificar el programa para que este corra con 3 Threads y cada uno tenga la tercera parte del total del intervalo descrito, es decir cada Thread tendra alrededor de 10000000 de numeros que analizar.
 
+Al ejecutar el programa con 3 Threads se puede ver el cambio con respecto a los recursos de la CPU.
+
+![](./img/media/adminTareas3Hilos.PNG)
+
+El proceso se evidencia cambia y de igual manera es de las aplicaciones con mayor consumo respecto a otras.
+
+![](./img/media/adminTareasProceso3Hilos.PNG)
+
+El porcentaje de la CPU cambia a 46% y los 4 nucleos trabajan casi con el mismo nivel.
+
+![](./img/media/adminTareasGrafica3Hilos.PNG)
+
+Segun VisualVM ahora utiliza el 23% de la CPU y se reduce el tiempo de trabajo a 28 segundos.
+
+![](./img/media/visualVMStart3Hilos.PNG)
+
+3. Lo que se le ha pedido es: debe modificar la aplicación de manera que cuando hayan transcurrido 5 segundos desde que se inició la ejecución, se detengan todos los hilos y se muestre el número de primos encontrados hasta el momento. Luego, se debe esperar a que el usuario presione ENTER para reanudar la ejecución de los mismo.
 
 
 ### Parte II 

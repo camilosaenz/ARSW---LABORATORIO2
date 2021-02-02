@@ -79,25 +79,37 @@ Al iniciar la aplicación, hay un primer error evidente: los resultados (total r
 
 Parte III
 
-1.  Corrija la aplicación para que el aviso de resultados se muestre
-    sólo cuando la ejecución de todos los hilos ‘galgo’ haya finalizado.
-    Para esto tenga en cuenta:
+1.  ![](./img/media/arregloMensajeGanador.png)
 
-    a.  La acción de iniciar la carrera y mostrar los resultados se realiza a partir de la línea 38 de MainCanodromo.
+2.  
+    ~~~
+    Acá podemos evidenciar que todos los perros (hilos)
+    entran y no hay control sobre lo que realizan en el método,
+    por lo tanto se da la incosistencia entre los puestos.
+    ~~~
+    ![](./img/media/puntoDosPerros.png)
 
-    b.  Puede utilizarse el método join() de la clase Thread para sincronizar el hilo que inicia la carrera, con la finalización de los hilos de los galgos.
-
-2.  Una vez corregido el problema inicial, corra la aplicación varias
-    veces, e identifique las inconsistencias en los resultados de las
-    mismas viendo el ‘ranking’ mostrado en consola (algunas veces
-    podrían salir resultados válidos, pero en otros se pueden presentar
-    dichas inconsistencias). A partir de esto, identifique las regiones
-    críticas () del programa.
-
-3.  Utilice un mecanismo de sincronización para garantizar que a dichas
-    regiones críticas sólo acceda un hilo a la vez. Verifique los
-    resultados.
-
+3.  
+    ~~~
+    Realizamos una sincronización con Mutex, para 
+    poder tener un control que sea solo un perro 
+    el que entra para marcar su posición
+    ~~~
+    ![](./img/media/puntoTresPerrosUno.png)
+  
+    
+    ~~~
+    Resideñamos el método de correr para implementar mutex
+    ~~~
+    ![](./img/media/puntoTresPerrosDos.png)  
+      
+      
+    ~~~
+    Iniciamos el Mutex en el main
+    ~~~
+    ![](./img/media/puntoTresPerrosTres.png)  
+      
+      
 4.  Implemente las funcionalidades de pausa y continuar. Con estas,
     cuando se haga clic en ‘Stop’, todos los hilos de los galgos
     deberían dormirse, y cuando se haga clic en ‘Continue’ los mismos

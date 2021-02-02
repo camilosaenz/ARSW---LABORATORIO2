@@ -1,5 +1,7 @@
 package arsw.threads;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * Un galgo que puede correr en un carril
  * 
@@ -7,13 +9,16 @@ package arsw.threads;
  * 
  */
 public class Galgo extends Thread {
+	
+	private ReentrantLock mutex;
 	private int paso;
 	private Carril carril;
 	RegistroLlegada regl;
 
-	public Galgo(Carril carril, String name, RegistroLlegada reg) {
+	public Galgo(Carril carril, String name, RegistroLlegada reg, ReentrantLock mutex) {
 		super(name);
 		this.carril = carril;
+		this.mutex = mutex;
 		paso = 0;
 		this.regl=reg;
 	}
@@ -23,16 +28,20 @@ public class Galgo extends Thread {
 			Thread.sleep(100);
 			carril.setPasoOn(paso++);
 			carril.displayPasos(paso);
-			
-			if (paso == carril.size()) {						
+			int ubicacion = 0;
+			if (paso == carril.size()) {
 				carril.finish();
-				int ubicacion=regl.getUltimaPosicionAlcanzada();
-				regl.setUltimaPosicionAlcanzada(ubicacion+1);
-				System.out.println("El galgo "+this.getName()+" llego en la posicion "+ubicacion);
+				try{
+					mutex.lock();
+					ubicacion=regl.getUltimaPosicionAlcanzada();
+					regl.setUltimaPosicionAlcanzada(ubicacion+1);
+					System.out.println("El galgo "+this.getName()+" llego en la posicion "+ubicacion);
+					}finally {
+						mutex.unlock();
+					}
 				if (ubicacion==1){
 					regl.setGanador(this.getName());
-				}
-				
+					}
 			}
 		}
 	}

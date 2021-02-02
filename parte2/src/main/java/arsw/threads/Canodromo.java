@@ -158,5 +158,6 @@ public class Canodromo extends JFrame {
 	
 	public void winnerDialog(String winner,int total) {
             JOptionPane.showMessageDialog(null, "El ganador fue:" + winner + " de un total de " + total);
+            
         }	
 }

@@ -79,7 +79,7 @@ Al iniciar la aplicación, hay un primer error evidente: los resultados (total r
 
 Parte III
 
-1.  ![](./img/media/arregloMensajeGanador.png)
+1.  <img src="https://raw.githubusercontent.com/camilosaenz/ARSW-LABORATORIO2/master/img/media/arregloMensajeGanador.PNG?raw=true">
 
 2.  
     ~~~
@@ -87,7 +87,7 @@ Parte III
     entran y no hay control sobre lo que realizan en el método,
     por lo tanto se da la incosistencia entre los puestos.
     ~~~
-    ![](./img/media/puntoDosPerros.png)
+    <img src="https://raw.githubusercontent.com/camilosaenz/ARSW-LABORATORIO2/master/img/media/puntoDosPerros.PNG?raw=true">
 
 3.  
     ~~~
@@ -95,19 +95,19 @@ Parte III
     poder tener un control que sea solo un perro 
     el que entra para marcar su posición
     ~~~
-    ![](./img/media/puntoTresPerrosUno.png)
+    <img src="https://raw.githubusercontent.com/camilosaenz/ARSW-LABORATORIO2/master/img/media/puntoTresPerrosUno.PNG?raw=true">
   
     
     ~~~
     Resideñamos el método de correr para implementar mutex
     ~~~
-    ![](./img/media/puntoTresPerrosDos.png)  
+    <img src="https://raw.githubusercontent.com/camilosaenz/ARSW-LABORATORIO2/master/img/media/puntoTresPerrosDos.PNG?raw=true">  
       
       
     ~~~
     Iniciamos el Mutex en el main
     ~~~
-    ![](./img/media/puntoTresPerrosTres.png)  
+    <img src="https://raw.githubusercontent.com/camilosaenz/ARSW-LABORATORIO2/master/img/media/puntoTresPerrosTres.PNG?raw=true"> 
       
       
 4.  Implemente las funcionalidades de pausa y continuar. Con estas,

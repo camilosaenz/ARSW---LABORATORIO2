@@ -14,18 +14,23 @@ public class Galgo extends Thread {
 	private int paso;
 	private Carril carril;
 	RegistroLlegada regl;
+	private boolean pausa;
 
 	public Galgo(Carril carril, String name, RegistroLlegada reg, ReentrantLock mutex) {
+		
 		super(name);
 		this.carril = carril;
 		this.mutex = mutex;
 		paso = 0;
 		this.regl=reg;
+		pausa = false;
+		
 	}
 
 	public void corra() throws InterruptedException {
-		while (paso < carril.size()) {			
+		while (paso < carril.size()) {	
 			Thread.sleep(100);
+			setPuestoActual(1);
 			carril.setPasoOn(paso++);
 			carril.displayPasos(paso);
 			int ubicacion = 0;
@@ -34,7 +39,7 @@ public class Galgo extends Thread {
 				try{
 					mutex.lock();
 					ubicacion=regl.getUltimaPosicionAlcanzada();
-					regl.setUltimaPosicionAlcanzada(ubicacion+1);
+					regl.setUltimaPosicionAlcanzada(ubicacion + 1);
 					System.out.println("El galgo "+this.getName()+" llego en la posicion "+ubicacion);
 					}finally {
 						mutex.unlock();
@@ -46,7 +51,6 @@ public class Galgo extends Thread {
 		}
 	}
 
-
 	@Override
 	public void run() {
 		
@@ -55,7 +59,25 @@ public class Galgo extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
 
+	public synchronized void setPuestoActual(int puestoActual) {
+		
+		if(pausa) {
+			try {
+				wait();
+			}catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public synchronized void setPausa(boolean pausa) {
+		
+		this.pausa = pausa;
+		if(!pausa) {
+			notifyAll();
+		}
 	}
 
 }

@@ -79,7 +79,9 @@ Al iniciar la aplicación, hay un primer error evidente: los resultados (total r
 
 Parte III
 
-1.  <img src="https://raw.githubusercontent.com/camilosaenz/ARSW-LABORATORIO2/master/img/media/arregloMensajeGanador.PNG?raw=true">
+1.  
+
+<img src="https://raw.githubusercontent.com/camilosaenz/ARSW-LABORATORIO2/master/img/media/arregloMensajeGanador.PNG?raw=true">
 
 2.  
     ~~~
@@ -87,6 +89,7 @@ Parte III
     entran y no hay control sobre lo que realizan en el método,
     por lo tanto se da la incosistencia entre los puestos.
     ~~~
+    
     <img src="https://raw.githubusercontent.com/camilosaenz/ARSW-LABORATORIO2/master/img/media/puntoDosPerros.PNG?raw=true">
 
 3.  
@@ -113,5 +116,34 @@ Parte III
 4.  Implemente las funcionalidades de pausa y continuar. Con estas,
     cuando se haga clic en ‘Stop’, todos los hilos de los galgos
     deberían dormirse, y cuando se haga clic en ‘Continue’ los mismos
-    deberían despertarse y continuar con la carrera. Diseñe una solución que permita hacer esto utilizando los mecanismos de sincronización con las primitivas de los Locks provistos por el lenguaje (wait y notifyAll).
+    deberían despertarse y continuar con la carrera. Diseñe una solución que permita hacer esto utilizando los mecanismos de sincronización con las primitivas de los Locks 
+    provistos por el lenguaje (wait y notifyAll).
+    
+    Para esto lo primero fue implentar dentro de la Clase Galgo unos medotos para controlar como se va a pausar y reiniciar los Threads, se crea el metodo setPuestoActual para poder pausar el Hilo dependiendo del booleano (pausa). Y luego cambiaremos el valor del booleano pausa esto lo hacemos para controlar segun su valor si se pausa o se continua con la carrera. Estos metodos implementan wait() para pausar y notifyAll() para reanudar.
+    
+    <img src="https://github.com/camilosaenz/ARSW-LABORATORIO2/blob/master/img/media/metodosPausa+Puesto.PNG?raw=true">
+    
+    Luego dentro de la Clase MainCanodromo editamos los metodos que se encargaran de pausar y continuar la carrera, para ***.setStopAction()*** vamos a recorrer sobre todos los galgos para poder pausar cada uno (En este caso se pausara cada unos de los Threads) esto gracias a que cambiamos el valor del booleano pausa en True para que si se pause la carrera. Y luego el metodo ***.setContinueAction*** que de igual manera que el metodo anterior cambiara el valor del booleano para reanudar la carrera.
+    
+    <img src="https://github.com/camilosaenz/ARSW-LABORATORIO2/blob/master/img/media/metodosActionsStop+Continue.PNG?raw=true">
 
+    Luego iniciaremos la carrera con el boton Start.
+    
+    <img src="https://github.com/camilosaenz/ARSW-LABORATORIO2/blob/master/img/media/start.PNG?raw=true">
+    
+    Luego pausamos la carrera con el botón Stop, en este caso se pauso en el metro 30 de la carrera.
+    
+    <img src="https://github.com/camilosaenz/ARSW-LABORATORIO2/blob/master/img/media/stop.PNG?raw=true">
+    
+    Se reanuda la carrera con el botón Continue, en este caso al tomar el pantallazo ya los galgos van en el metro 45 de la carrera.
+    
+    <img src="https://github.com/camilosaenz/ARSW-LABORATORIO2/blob/master/img/media/continue.PNG?raw=true">
+    
+    Luego se termina la carrera y se observa que el galgo ganador fue el galgo Número 8.
+    
+    <img src="https://github.com/camilosaenz/ARSW-LABORATORIO2/blob/master/img/media/final.PNG?raw=true">
+    
+    Y en esta imagen se puede observar como transcurrio la carrera, los momentos de pausar y reanudar y las posiciones finales de los galgos.
+    
+     <img src="https://github.com/camilosaenz/ARSW-LABORATORIO2/blob/master/img/media/consola.PNG?raw=true">
+     
